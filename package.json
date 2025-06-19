@@ -2,7 +2,11 @@
   "name": "api-scoring-app",
   "module": "index.ts",
   "version": "1.0.0",
-  "description": "",
+  "description": "A lightweight application for OpenAPI spec validation",
+  "author": {
+    "name": "Dhairya",
+    "email": "majmudar777@gmail.com"
+  },
   "type": "module",
   "scripts": {
     "build": "bun build src/index.ts --outdir dist",
