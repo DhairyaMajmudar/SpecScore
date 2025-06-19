@@ -22,8 +22,8 @@
     "@types/bun": "latest"
   },
   "dependencies": {
-    "commander": "^11.0.0",
-    "axios": "^1.6.2"
+    "axios": "^1.6.2",
+    "commander": "^14.0.0"
   },
   "peerDependencies": {
     "typescript": "^5"
