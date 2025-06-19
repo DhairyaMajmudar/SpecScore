@@ -1,0 +1,27 @@
+{
+  "name": "api-scoring-app",
+  "module": "index.ts",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist",
+    "start": "bun run build && bun run dist/index.js",
+    "dev": "bun --watch src/index.ts",
+    "lint": "eslint . --ext .ts",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0"
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "axios": "^1.6.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
