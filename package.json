@@ -12,6 +12,9 @@
     "build": "bun build src/index.ts --outdir dist",
     "start": "bun run build && bun run dist/index.js",
     "dev": "bun --watch src/index.ts",
+    "lint": "biome lint",
+    "lint:fix": "biome lint --write",
+    "format": "biome format --write",
     "test": "bun test"
   },
   "devDependencies": {
