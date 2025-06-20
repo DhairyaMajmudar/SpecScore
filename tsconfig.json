@@ -17,8 +17,7 @@
     "noUnusedParameters": true,
     "noPropertyAccessFromIndexSignature": true,
     "incremental": true,
-    "outDir": "dist",
-    "rootDir": "src"
+    "outDir": "dist"
   },
   "include": ["src/**/*", "index.ts"],
   "exclude": ["node_modules", "dist"]
