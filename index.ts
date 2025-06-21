@@ -1,4 +1,5 @@
 import { program } from 'commander';
+import { validate } from './src';
 
 program
   .command('score-api')
@@ -9,4 +10,4 @@ program
   .command('validate')
   .description('Validate an OpenAPI schema file or url link')
   .argument('<file>', 'Path to the OpenAPI schema file (yaml or json) or URL')
-  .action(() => {});
+  .action(validate);
