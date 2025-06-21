@@ -16,6 +16,16 @@ program
   .command('report')
   .description('Generate a report for an OpenAPI schema file or url link')
   .argument('<file>', 'Path to the OpenAPI schema file (yaml or json) or URL')
+  .option(
+    '-f, --format <format>',
+    'Output format: console, markdown, html',
+    'console',
+  )
+  .option(
+    '-o, --output <file>',
+    'Output file path (for markdown, html formats)',
+    'report.md',
+  )
   .action(report);
 
 program.parse(process.argv);
