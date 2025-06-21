@@ -1,9 +1,9 @@
-import { writeFile } from "node:fs/promises";
-import chalk from "chalk";
-import consola from "consola";
-import type { OpenAPIV3 } from "openapi-types";
-import { type CriteriaScore, Evaluators } from "./evaluators";
-import { OpenAPIParser } from "./parser";
+import { writeFile } from 'node:fs/promises';
+import chalk from 'chalk';
+import consola from 'consola';
+import type { OpenAPIV3 } from 'openapi-types';
+import { type CriteriaScore, Evaluators } from './evaluators';
+import { OpenAPIParser } from './parser';
 
 /**
  * Complete scoring result for the OpenAPI specification
@@ -39,52 +39,52 @@ export class OpenAPIScorer {
    */
   async scoreSpec(source: string): Promise<ScoringResult> {
     // Step 1: Parse document
-    consola.start("Parsing OpenAPI document...");
+    consola.start('Parsing OpenAPI document...');
     await this.delay(800);
     const document = await this.parser.parse(source);
-    consola.success("Document parsed successfully");
+    consola.success('Document parsed successfully');
 
     // Step 2: Analyze schema and types
-    consola.start("🔍 Analyzing schema & types...");
+    consola.start('🔍 Analyzing schema & types...');
     await this.delay(600);
     const schemaScore = this.evaluators.scoreSchemaAndTypes(document);
-    consola.success(chalk.green.bold("Schema analysis completed"));
+    consola.success(chalk.green.bold('Schema analysis completed'));
 
     // Step 3: Check descriptions and documentation
-    consola.start("📝 Evaluating descriptions & documentation...");
+    consola.start('📝 Evaluating descriptions & documentation...');
     await this.delay(700);
     const descriptionScore = this.evaluators.scoreDescriptions(document);
-    consola.success("Documentation analysis completed");
+    consola.success('Documentation analysis completed');
 
     // Step 4: Analyze paths and operations
-    consola.start("Analyzing paths & operations...");
+    consola.start('Analyzing paths & operations...');
     await this.delay(500);
     const pathsScore = this.evaluators.scorePathsAndOperations(document);
-    consola.success(chalk.green.bold("Paths analysis completed"));
+    consola.success(chalk.green.bold('Paths analysis completed'));
 
     // Step 5: Check response codes
-    consola.start("Evaluating response codes...");
+    consola.start('Evaluating response codes...');
     await this.delay(400);
     const responseCodesScore = this.evaluators.scoreResponseCodes(document);
-    consola.success(chalk.green.bold("Response codes analysis completed"));
+    consola.success(chalk.green.bold('Response codes analysis completed'));
 
     // Step 6: Check examples and samples
-    consola.start("Checking examples & samples...");
+    consola.start('Checking examples & samples...');
     await this.delay(300);
     const examplesScore = this.evaluators.scoreExamples(document);
-    consola.success(chalk.green.bold("Examples analysis completed"));
+    consola.success(chalk.green.bold('Examples analysis completed'));
 
     // Step 7: Analyze security
-    consola.start("Evaluating security...");
+    consola.start('Evaluating security...');
     await this.delay(400);
     const securityScore = this.evaluators.scoreSecurity(document);
-    consola.success(chalk.green.bold("Security analysis completed"));
+    consola.success(chalk.green.bold('Security analysis completed'));
 
     // Step 8: Check best practices
-    consola.start("Checking best practices...");
+    consola.start('Checking best practices...');
     await this.delay(500);
     const bestPracticesScore = this.evaluators.scoreBestPractices(document);
-    consola.success(chalk.green.bold("Best practices analysis completed"));
+    consola.success(chalk.green.bold('Best practices analysis completed'));
 
     const criteria = [
       schemaScore,
@@ -98,7 +98,7 @@ export class OpenAPIScorer {
 
     const totalScore = criteria.reduce(
       (sum, criteria) => sum + criteria.score,
-      0
+      0,
     );
     const grade = this.calculateGrade(totalScore);
 
@@ -115,11 +115,11 @@ export class OpenAPIScorer {
    * Calculate letter grade based on total score
    */
   private calculateGrade(score: number): string {
-    if (score >= 80) return "A";
-    if (score >= 70) return "B";
-    if (score >= 60) return "C";
-    if (score >= 50) return "D";
-    return "F";
+    if (score >= 80) return 'A';
+    if (score >= 70) return 'B';
+    if (score >= 60) return 'C';
+    if (score >= 50) return 'D';
+    return 'F';
   }
 
   /**
@@ -127,29 +127,29 @@ export class OpenAPIScorer {
    */
   private generateOverallFeedback(
     totalScore: number,
-    criteria: CriteriaScore[]
+    criteria: CriteriaScore[],
   ): string[] {
     const feedback: string[] = [];
 
     if (totalScore >= 80) {
       feedback.push(
-        "Excellent! Your OpenAPI specification follows industry best practices."
+        'Excellent! Your OpenAPI specification follows industry best practices.',
       );
     } else if (totalScore >= 70) {
       feedback.push(
-        "Good job! Your API specification is well-structured with minor areas for improvement."
+        'Good job! Your API specification is well-structured with minor areas for improvement.',
       );
     } else if (totalScore >= 60) {
       feedback.push(
-        "Your API specification is decent but has several areas that could be improved."
+        'Your API specification is decent but has several areas that could be improved.',
       );
     } else if (totalScore >= 50) {
       feedback.push(
-        "Your API specification needs significant improvements to meet best practices."
+        'Your API specification needs significant improvements to meet best practices.',
       );
     } else {
       feedback.push(
-        "Your API specification requires major improvements across multiple areas."
+        'Your API specification requires major improvements across multiple areas.',
       );
     }
 
@@ -160,7 +160,7 @@ export class OpenAPIScorer {
 
     if (weakAreas.length > 0) {
       feedback.push(
-        `Focus on improving: ${weakAreas.map((area) => area.name).join(", ")}`
+        `Focus on improving: ${weakAreas.map((area) => area.name).join(', ')}`,
       );
     }
 
@@ -173,12 +173,12 @@ export class OpenAPIScorer {
   async generateMarkdownReport(
     result: ScoringResult,
     outputPath: string,
-    duration: number
+    duration: number,
   ): Promise<void> {
     const markdown = this.generateMarkdownContent(result, duration);
 
     try {
-      await writeFile(outputPath, markdown, "utf-8");
+      await writeFile(outputPath, markdown, 'utf-8');
       consola.success(`📄 Markdown report generated: ${outputPath}`);
     } catch (error) {
       consola.error(`Failed to write markdown report: ${error}`);
@@ -192,12 +192,12 @@ export class OpenAPIScorer {
   async generateHtmlReport(
     result: ScoringResult,
     outputPath: string,
-    duration: number
+    duration: number,
   ): Promise<void> {
     const html = this.generateHtmlContent(result, duration);
 
     try {
-      await writeFile(outputPath, html, "utf-8");
+      await writeFile(outputPath, html, 'utf-8');
       consola.success(`🌐 HTML report generated: ${outputPath}`);
     } catch (error) {
       consola.error(`Failed to write HTML report: ${error}`);
@@ -210,9 +210,9 @@ export class OpenAPIScorer {
    */
   private generateMarkdownContent(
     result: ScoringResult,
-    duration: number
+    duration: number,
   ): string {
-    const date = new Date().toISOString().split("T")[0];
+    const date = new Date().toISOString().split('T')[0];
 
     let markdown = `# OpenAPI Specification Report
 
@@ -237,10 +237,10 @@ Report Duration: ${duration}ms
     result.criteria.forEach((criteria) => {
       const status =
         criteria.percentage >= 80
-          ? "✅"
+          ? '✅'
           : criteria.percentage >= 60
-          ? "⚠️"
-          : "❌";
+            ? '⚠️'
+            : '❌';
       markdown += `| ${criteria.name} | ${criteria.score} | ${criteria.maxScore} | ${criteria.percentage}% | ${status} |\n`;
     });
 
@@ -291,15 +291,15 @@ Report Duration: ${duration}ms
    * Generate HTML content for the report
    */
   private generateHtmlContent(result: ScoringResult, duration: number): string {
-    const date = new Date().toISOString().split("T")[0];
+    const date = new Date().toISOString().split('T')[0];
     const gradeColor =
-      result.grade === "A"
-        ? "#22c55e"
-        : result.grade === "B"
-        ? "#3b82f6"
-        : result.grade === "C"
-        ? "#eab308"
-        : "#ef4444";
+      result.grade === 'A'
+        ? '#22c55e'
+        : result.grade === 'B'
+          ? '#3b82f6'
+          : result.grade === 'C'
+            ? '#eab308'
+            : '#ef4444';
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -349,8 +349,8 @@ Report Duration: ${duration}ms
                 <div class="score-number">${
                   result.totalScore
                 }<span style="font-size: 1.5rem; color: #64748b;">/100</span><span class="grade">${
-      result.grade
-    }</span></div>
+                  result.grade
+                }</span></div>
             </div>
             
             <div class="info-grid">
@@ -369,8 +369,8 @@ Report Duration: ${duration}ms
                 <div class="info-item">
                     <div class="info-label">Grade</div>
                     <div style="color: ${gradeColor}; font-weight: bold;">${
-      result.grade
-    }</div>
+                      result.grade
+                    }</div>
                 </div>
             </div>
         </div>
@@ -382,17 +382,17 @@ Report Duration: ${duration}ms
                   .map((criteria) => {
                     const color =
                       criteria.percentage >= 80
-                        ? "#22c55e"
+                        ? '#22c55e'
                         : criteria.percentage >= 60
-                        ? "#eab308"
-                        : "#ef4444";
+                          ? '#eab308'
+                          : '#ef4444';
                     return `
                     <div class="criteria-card">
                         <div class="criteria-header">
                             <div class="criteria-name">${criteria.name}</div>
                             <div class="criteria-score" style="color: ${color};">${
-                      criteria.score
-                    }/${criteria.maxScore} (${criteria.percentage}%)</div>
+                              criteria.score
+                            }/${criteria.maxScore} (${criteria.percentage}%)</div>
                         </div>
                         <div class="progress-bar">
                             <div class="progress-fill" style="width: ${
@@ -406,12 +406,12 @@ Report Duration: ${duration}ms
                                 ${criteria.feedback
                                   .map(
                                     (item) =>
-                                      `<li class="feedback-item">• ${item}</li>`
+                                      `<li class="feedback-item">• ${item}</li>`,
                                   )
-                                  .join("")}
+                                  .join('')}
                             </ul>
                         `
-                            : ""
+                            : ''
                         }
                         ${
                           criteria.suggestions.length > 0
@@ -422,18 +422,18 @@ Report Duration: ${duration}ms
                                     ${criteria.suggestions
                                       .map(
                                         (suggestion) =>
-                                          `<li>• ${suggestion}</li>`
+                                          `<li>• ${suggestion}</li>`,
                                       )
-                                      .join("")}
+                                      .join('')}
                                 </ul>
                             </div>
                         `
-                            : ""
+                            : ''
                         }
                     </div>
                   `;
                   })
-                  .join("")}
+                  .join('')}
             </div>
         </div>
 
@@ -445,11 +445,11 @@ Report Duration: ${duration}ms
                 <ul class="feedback-list">
                     ${result.feedback
                       .map((item) => `<li class="feedback-item">• ${item}</li>`)
-                      .join("")}
+                      .join('')}
                 </ul>
             </div>
         `
-            : ""
+            : ''
         }
 
         <div class="footer">
@@ -464,73 +464,73 @@ Report Duration: ${duration}ms
    * Print detailed scoring results
    */
   printScoringResult(result: ScoringResult, duration: number): void {
-    consola.log("");
+    consola.log('');
 
     const gradeColor =
-      result.grade === "A"
-        ? "green"
-        : result.grade === "B"
-        ? "blue"
-        : result.grade === "C"
-        ? "yellow"
-        : "red";
+      result.grade === 'A'
+        ? 'green'
+        : result.grade === 'B'
+          ? 'blue'
+          : result.grade === 'C'
+            ? 'yellow'
+            : 'red';
 
     consola.info(chalk.bold(`OpenAPI Specification Report`));
     consola.log(
-      `   ${chalk.cyan("API Title:")} ${chalk.white(
-        result.document.info.title
-      )}`
+      `   ${chalk.cyan('API Title:')} ${chalk.white(
+        result.document.info.title,
+      )}`,
     );
     consola.log(
-      `   ${chalk.cyan("Version:")} ${chalk.white(
-        result.document.info.version
-      )}`
+      `   ${chalk.cyan('Version:')} ${chalk.white(
+        result.document.info.version,
+      )}`,
     );
     consola.log(
-      `   ${chalk.cyan("Overall Score:")} ${chalk[gradeColor].bold(
-        `${result.totalScore}/100 (${result.grade})`
-      )}`
+      `   ${chalk.cyan('Overall Score:')} ${chalk[gradeColor].bold(
+        `${result.totalScore}/100 (${result.grade})`,
+      )}`,
     );
-    consola.log("");
+    consola.log('');
 
-    consola.info(chalk.blue.bold("Detailed Scoring:"));
+    consola.info(chalk.blue.bold('Detailed Scoring:'));
     result.criteria.forEach((criteria) => {
       const percentageColor =
         criteria.percentage >= 80
-          ? "green"
+          ? 'green'
           : criteria.percentage >= 60
-          ? "yellow"
-          : "red";
+            ? 'yellow'
+            : 'red';
 
       consola.log(
         `   ${chalk.cyan(criteria.name.padEnd(25))} ${chalk[percentageColor](
-          `${criteria.score}/${criteria.maxScore}`
-        )} ${chalk.gray(`(${criteria.percentage}%)`)}`
+          `${criteria.score}/${criteria.maxScore}`,
+        )} ${chalk.gray(`(${criteria.percentage}%)`)}`,
       );
 
       if (criteria.feedback.length > 0) {
         criteria.feedback.forEach((item) => {
-          consola.log(`     ${chalk.gray("•")} ${chalk.gray(item)}`);
+          consola.log(`     ${chalk.gray('•')} ${chalk.gray(item)}`);
         });
       }
     });
-    consola.log("");
+    consola.log('');
 
     if (result.feedback.length > 0) {
-      consola.info(chalk.blue.bold("Overall Feedback:"));
+      consola.info(chalk.blue.bold('Overall Feedback:'));
       result.feedback.forEach((item) => {
-        consola.log(`   ${chalk.yellow("•")} ${item}`);
+        consola.log(`   ${chalk.yellow('•')} ${item}`);
       });
-      consola.log("");
+      consola.log('');
     }
 
     const allSuggestions = result.criteria.flatMap((c) => c.suggestions);
     if (allSuggestions.length > 0) {
-      consola.info(chalk.blue.bold("Suggestions for Improvement:"));
+      consola.info(chalk.blue.bold('Suggestions for Improvement:'));
       allSuggestions.slice(0, 5).forEach((suggestion) => {
-        consola.log(`   ${chalk.yellow("•")} ${suggestion}`);
+        consola.log(`   ${chalk.yellow('•')} ${suggestion}`);
       });
-      consola.log("");
+      consola.log('');
     }
 
     consola.success(`Report generated in ${duration}ms`);
