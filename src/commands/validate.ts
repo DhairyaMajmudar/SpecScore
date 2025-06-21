@@ -11,7 +11,7 @@ export async function validate(source: string): Promise<void> {
   const validator = new OpenAPIValidator();
 
   consola.start(`Validating OpenAPI specification: ${source}`);
-  consola.log('');
+  consola.log('='.repeat(60));
 
   try {
     const result = await validator.validateSpec(source);
