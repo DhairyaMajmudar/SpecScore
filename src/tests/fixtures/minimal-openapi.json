@@ -1,0 +1,9 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Minimal API", "version": "1.0.0" },
+  "paths": {
+    "/health": {
+      "get": { "responses": { "200": { "description": "Health check" } } }
+    }
+  }
+}
