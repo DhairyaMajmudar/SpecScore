@@ -16,7 +16,8 @@
     "lint:fix": "biome lint --write",
     "type:check": "tsc --noEmit",
     "format": "biome format --write",
-    "test": "bun test"
+    "test": "bun test",
+    "test:coverage": "bun test --coverage"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.0",
