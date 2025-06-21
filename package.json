@@ -9,6 +9,13 @@
   },
   "type": "module",
   "license": "MIT",
+  "keywords": [
+    "openapi",
+    "validation",
+    "cli",
+    "reporter",
+    "scorer"
+  ],
   "scripts": {
     "build": "bun build src/index.ts --outdir dist",
     "start": "bun run build && bun run index.ts",
