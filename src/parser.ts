@@ -2,6 +2,11 @@ import { readFile } from 'node:fs/promises';
 import { load } from 'js-yaml';
 import type { OpenAPIV3 } from 'openapi-types';
 
+/**
+ * Parses an OpenAPI specification from a URL or file path.
+ * Supports both JSON and YAML formats.
+ * Throws detailed errors for network issues, file access problems, and parsing errors.
+ */
 export class OpenAPIParser {
   private async parseUrl(url: string): Promise<string> {
     try {
