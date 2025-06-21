@@ -16,6 +16,14 @@
     "reporter",
     "scorer"
   ],
+  "bin": {
+    "spec-score": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "bun build src/index.ts --outdir dist",
     "start": "bun run build && bun run index.ts",
