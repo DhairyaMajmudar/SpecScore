@@ -1,8 +1,8 @@
 {
-  "name": "api-scoring-app",
+  "name": "spec-score",
   "module": "index.ts",
   "version": "1.0.0",
-  "description": "A lightweight application for OpenAPI spec validation",
+  "description": "A lightweight application for OpenAPI spec validation and scoring.",
   "author": {
     "name": "Dhairya",
     "email": "majmudar777@gmail.com"
