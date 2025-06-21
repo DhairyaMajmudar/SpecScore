@@ -51,14 +51,14 @@ export class OpenAPIValidator {
 
     try {
       // Step 1: Parse document
-      consola.start('Parsing document...');
+      consola.start('Parsing OpenAPI document...');
       await this.delay(800); // Simulate parsing time
       const document = await this.parser.parse(source);
       consola.success(chalk.green.bold('Document parsed successfully'));
       console.log('');
 
       // Step 2: Validate with swagger-parser
-      consola.start('🔍 Validating against OpenAPI specification...');
+      consola.start('Validating against OpenAPI specification...');
       await this.delay(1200); // Simulate validation time
       const validatedApi = await SwaggerParser.validate(document);
       consola.success(chalk.green.bold('Validation successful!'));
