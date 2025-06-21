@@ -130,19 +130,19 @@ export class OpenAPIScorer {
   ): string[] {
     const feedback: string[] = [];
 
-    if (totalScore >= 90) {
+    if (totalScore >= 80) {
       feedback.push(
         'Excellent! Your OpenAPI specification follows industry best practices.',
       );
-    } else if (totalScore >= 80) {
+    } else if (totalScore >= 70) {
       feedback.push(
         'Good job! Your API specification is well-structured with minor areas for improvement.',
       );
-    } else if (totalScore >= 70) {
+    } else if (totalScore >= 60) {
       feedback.push(
         'Your API specification is decent but has several areas that could be improved.',
       );
-    } else if (totalScore >= 60) {
+    } else if (totalScore >= 50) {
       feedback.push(
         'Your API specification needs significant improvements to meet best practices.',
       );
@@ -153,7 +153,7 @@ export class OpenAPIScorer {
     }
 
     const weakAreas = criteria
-      .filter((c) => c.percentage < 60)
+      .filter((c) => c.percentage < 50)
       .sort((a, b) => a.percentage - b.percentage)
       .slice(0, 3);
 
@@ -199,7 +199,7 @@ export class OpenAPIScorer {
     );
     consola.log('');
 
-    consola.info(chalk.blue.bold('📋 Detailed Scoring:'));
+    consola.info(chalk.blue.bold('Detailed Scoring:'));
     result.criteria.forEach((criteria) => {
       const percentageColor =
         criteria.percentage >= 80
