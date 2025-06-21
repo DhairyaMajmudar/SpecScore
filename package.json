@@ -8,6 +8,7 @@
     "email": "majmudar777@gmail.com"
   },
   "type": "module",
+  "license": "MIT",
   "scripts": {
     "build": "bun build src/index.ts --outdir dist",
     "start": "bun run build && bun run index.ts",
