@@ -10,7 +10,7 @@
   "type": "module",
   "scripts": {
     "build": "bun build src/index.ts --outdir dist",
-    "start": "bun run build && bun run dist/index.js",
+    "start": "bun run build && bun run index.ts",
     "dev": "bun --watch src/index.ts",
     "lint": "biome lint",
     "lint:fix": "biome lint --write",
