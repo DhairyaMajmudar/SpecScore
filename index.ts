@@ -4,7 +4,7 @@ import { program } from 'commander';
 import { report, validate } from './src';
 
 program
-  .name('score-api')
+  .name('spec-score')
   .description('CLI to validate OpenAPI schemas and generate reports')
   .version('0.1.0');
 
