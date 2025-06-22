@@ -1,7 +1,7 @@
 {
   "name": "spec-score",
   "main": "index.ts",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A lightweight application for OpenAPI spec validation and scoring.",
   "author": {
     "name": "Dhairya",
@@ -19,6 +19,10 @@
   ],
   "bin": {
     "spec-score": "./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DhairyaMajmudar/SpecScore.git"
   },
   "files": [
     "dist",
