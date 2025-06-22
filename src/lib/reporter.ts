@@ -173,9 +173,8 @@ export class OpenAPIScorer {
   async generateMarkdownReport(
     result: ScoringResult,
     outputPath: string,
-    duration: number,
   ): Promise<void> {
-    const markdown = this.generateMarkdownContent(result, duration);
+    const markdown = this.generateMarkdownContent(result);
 
     try {
       await writeFile(outputPath, markdown, 'utf-8');
@@ -192,9 +191,8 @@ export class OpenAPIScorer {
   async generateHtmlReport(
     result: ScoringResult,
     outputPath: string,
-    duration: number,
   ): Promise<void> {
-    const html = this.generateHtmlContent(result, duration);
+    const html = this.generateHtmlContent(result);
 
     try {
       await writeFile(outputPath, html, 'utf-8');
@@ -208,16 +206,12 @@ export class OpenAPIScorer {
   /**
    * Generate markdown content for the report
    */
-  private generateMarkdownContent(
-    result: ScoringResult,
-    duration: number,
-  ): string {
+  private generateMarkdownContent(result: ScoringResult): string {
     const date = new Date().toISOString().split('T')[0];
 
     let markdown = `# OpenAPI Specification Report
 
 Generated on: ${date}  
-Report Duration: ${duration}ms
 
 ## API Information
 
@@ -290,8 +284,7 @@ Report Duration: ${duration}ms
   /**
    * Generate HTML content for the report
    */
-  private generateHtmlContent(result: ScoringResult, duration: number): string {
-    const date = new Date().toISOString().split('T')[0];
+  private generateHtmlContent(result: ScoringResult): string {
     const gradeColor =
       result.grade === 'A'
         ? '#22c55e'
@@ -341,7 +334,6 @@ Report Duration: ${duration}ms
     <div class="container">
         <div class="header">
             <div class="title">📊 OpenAPI Specification Report</div>
-            <div class="subtitle">Generated on ${date} • Duration: ${duration}ms</div>
         </div>
 
         <div class="score-card">
