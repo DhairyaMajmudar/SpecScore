@@ -53,9 +53,15 @@ spec-score validate <file|url>
 **Examples:**
 
 ```bash
-spec-score validate ./api/openapi.yaml
+spec-score validate spec.yaml
 spec-score validate https://petstore3.swagger.io/api/v3/openapi.json
 ```
+
+<img src="https://github.com/user-attachments/assets/2391cbf3-f6b8-49f4-99b8-992b030cb923" width="500" />
+
+<br/>
+<br/>
+
 
 **Output includes:**
 
@@ -89,6 +95,7 @@ spec-score report ./openapi.yaml -f markdown -o api-report.md
 # HTML report
 spec-score report ./openapi.yaml -f html -o api-report.html
 ```
+<img src="https://github.com/user-attachments/assets/5e5b7ba1-8d81-49d0-b147-460f4e1a793b" width="500" height="450"/>
 
 ## Scoring Criteria
 
