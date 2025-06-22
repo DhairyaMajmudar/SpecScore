@@ -1,7 +1,7 @@
 {
   "name": "spec-score",
   "main": "index.ts",
-  "version": "0.3.2",
+  "version": "0.3.4",
   "description": "A lightweight application for OpenAPI spec validation and scoring.",
   "author": {
     "name": "Dhairya",
