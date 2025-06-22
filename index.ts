@@ -42,3 +42,8 @@ process.on('SIGINT', () => {
 if (!process.argv.slice(2).length) {
   program.outputHelp();
 }
+
+// class exports for programtic use
+export { OpenAPIScorer } from './src/lib/reporter';
+export { OpenAPIParser } from './src/lib/parser';
+export { Evaluators } from './src/lib/evaluators';
