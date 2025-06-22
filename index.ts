@@ -32,6 +32,13 @@ program
 
 program.parse(process.argv);
 
+// gracefully handle shutdown
 process.on('SIGINT', () => {
+  console.log('\nGracefully shutting down...');
   process.exit();
 });
+
+// Show help if no command provided
+if (!process.argv.slice(2).length) {
+  program.outputHelp();
+}
