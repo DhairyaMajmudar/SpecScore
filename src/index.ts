@@ -1,2 +1,2 @@
-export * from './commands/report';
-export * from './commands/validate';
+export { report } from './commands/report';
+export { validate } from './commands/validate';
