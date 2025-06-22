@@ -1,7 +1,7 @@
 {
   "name": "spec-score",
   "main": "index.ts",
-  "version": "0.1.0",
+  "version": "0.3.1",
   "description": "A lightweight application for OpenAPI spec validation and scoring.",
   "author": {
     "name": "Dhairya",
@@ -41,15 +41,15 @@
   "devDependencies": {
     "@biomejs/biome": "2.0.0",
     "@types/bun": "latest",
-    "@types/js-yaml": "^4.0.9"
+    "@types/js-yaml": "^4.0.9",
+    "openapi-types": "^12.1.3"
   },
   "dependencies": {
     "@apidevtools/swagger-parser": "^12.0.0",
     "chalk": "^5.4.1",
     "commander": "^14.0.0",
     "consola": "^3.4.2",
-    "js-yaml": "^4.1.0",
-    "openapi-types": "^12.1.3"
+    "js-yaml": "^4.1.0"
   },
   "peerDependencies": {
     "typescript": "^5"
