@@ -122,7 +122,7 @@ describe('Integration Tests', () => {
       const outputPath = join(TEST_OUTPUT_DIR, 'test-report.md');
 
       const result = await scorer.scoreSpec(validSpecPath);
-      await scorer.generateMarkdownReport(result, outputPath, 1000);
+      await scorer.generateMarkdownReport(result, outputPath);
 
       expect(existsSync(outputPath)).toBe(true);
 
@@ -141,7 +141,7 @@ describe('Integration Tests', () => {
       const outputPath = join(TEST_OUTPUT_DIR, 'test-report.html');
 
       const result = await scorer.scoreSpec(validSpecPath);
-      await scorer.generateHtmlReport(result, outputPath, 1000);
+      await scorer.generateHtmlReport(result, outputPath);
 
       expect(existsSync(outputPath)).toBe(true);
 

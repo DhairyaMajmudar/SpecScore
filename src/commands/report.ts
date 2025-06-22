@@ -36,18 +36,10 @@ export async function report(
 
     switch (format) {
       case 'markdown':
-        await scorer.generateMarkdownReport(
-          result,
-          options.output ?? '',
-          Date.now() - startTime,
-        );
+        await scorer.generateMarkdownReport(result, options.output ?? '');
         break;
       case 'html':
-        await scorer.generateHtmlReport(
-          result,
-          options.output ?? '',
-          Date.now() - startTime,
-        );
+        await scorer.generateHtmlReport(result, options.output ?? '');
         break;
       default:
         scorer.printScoringResult(result, Date.now() - startTime);
